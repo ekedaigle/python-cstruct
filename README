@@ -1,0 +1,18 @@
+This is a module for emulating c-like structures in python. It allows you to create a mutable structure with defined varaible sizes for conversion to byte strings. Example:
+
+import cstruct
+
+class MyStruct(cstruct.CStruct):
+    my_int = 'i' # signed int
+    my_uint = 'I' # unsigned int
+    my_float = 'f' # float
+    my_string = '32s' # 32-byte string
+
+mystruct = MyStruct(-10, 42, 2.71828, 'Hello World!')
+mystruct.my_float = 3.14159
+
+byte_string = mystruct.pack()
+
+otherstruct = MyStruct.unpack(bstring)
+print otherstruct.my_uint # prints '42'
+
